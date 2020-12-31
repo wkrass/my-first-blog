@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Djangogirls Tutorial f&uuml;r Python und Django</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="djangogirls-tutorial-für-python-und-django">Djangogirls Tutorial für Python und Django</h1>
+<ul>
+<li><a href="#djangogirls-tutorial-f%C3%BCr-python-und-django">Djangogirls Tutorial für Python und Django</a>
+<ul>
+<li><a href="#virtuelle-umgebung">Virtuelle Umgebung</a></li>
+<li><a href="#django-installation">Django Installation</a></li>
+<li><a href="#das-erste-django-projekt---ein-blog">Das erste Django Projekt - ein Blog</a></li>
+<li><a href="#webserver-starten">Webserver starten</a></li>
+<li><a href="#django-models">Django-Models</a>
+<ul>
+<li><a href="#django-model-erstellen">Django-Model erstellen</a></li>
+<li><a href="#eine-applikation-f%C3%BCr-den-blog">Eine Applikation für den Blog</a></li>
+<li><a href="#tabellen-f%C3%BCr-models-in-deiner-datenbank-erstellen">Tabellen für Models in deiner Datenbank erstellen</a></li>
+</ul>
+</li>
+<li><a href="#django-administration">Django-Administration</a></li>
+<li><a href="#ver%C3%B6ffentlichen">Veröffentlichen</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="virtuelle-umgebung">Virtuelle Umgebung</h2>
+<ul>
+<li>Im Projektverzeichnis erstellen: python -m venv myvenv</li>
+<li>im Projektverzeichnis starten: <strong>myvenv\Scripts\activate</strong>  z.B. in der PowerShell von VS Code  ==&gt; (myvenv)</li>
+</ul>
+<h2 id="django-installation">Django Installation</h2>
+<ul>
+<li>zuerst pip aktualisieren: python -m pip install --upgrade pip</li>
+<li>Pakete mittels requirements-Datei installieren ==&gt; requirements.txt erstellen</li>
+<li>in die Datei requirements.txt eintragen: Django~=3.1.4</li>
+<li>Installation starten mit: pip install -r requirements.txt oder python -m pip install -r requirements.txt</li>
+</ul>
+<h2 id="das-erste-django-projekt---ein-blog">Das erste Django Projekt - ein Blog</h2>
+<ul>
+<li>ALLES in der virtuellen Umgebung machen</li>
+<li>Projekt erstellen: django-admin.exe startproject mysite .  &lt;== Punkt nicht vergessen für aktuelles Verzeichnis</li>
+<li>Einstellungen anpassen in Datei <a href="http://settings.py">settings.py</a>  z.B. import os, TIME_ZONE, LANGUAGE_CODE, ALLOWED_HOSTS, STATIC_ROOT, ...</li>
+<li>im Projektverzeichnis eingeben: python <a href="http://manage.py">manage.py</a> migrate</li>
+</ul>
+<h2 id="webserver-starten">Webserver starten</h2>
+<p>(myvenv) <strong>python <a href="http://manage.py">manage.py</a> runserver</strong></p>
+<h2 id="django-models">Django-Models</h2>
+<ul>
+<li>objektorientiertes Programmieren - Objekte und Vorlagen (Klassen)</li>
+<li>Objekt: Sammlung von Eigenschaften und Aktionsmöglichkeiten, das anhand einer Vorlage (Klasse) erstellt wird</li>
+<li>z.B. für den Blog - Post: title, text, author, created_date, published_date + veröffentlichen-Methode</li>
+<li>Der Gedanke dahinter ist, echte Dinge mit Hilfe von Eigenschaften (genannt Objekteigenschaften) und Aktionsmöglichkeiten (genannt Methoden) im Programmcode zu beschreiben.</li>
+</ul>
+<h3 id="django-model-erstellen">Django-Model erstellen</h3>
+<ul>
+<li>ein &quot;Modell&quot; wird als Objekt in der Datenbank gespeichert wie eine Tabelle mit Spalten (Feldern) und Zeilen</li>
+</ul>
+<h3 id="eine-applikation-für-den-blog">Eine Applikation für den Blog</h3>
+<ul>
+<li>erstellen im Projektverzeichnis: python <a href="http://manage.py">manage.py</a> startapp blog</li>
+<li>Django mitteilen, diese Applikation zu benutzen: in Datei mysite/settings-py bei INSTALLED_APPS eintragen: 'blog.apps.BlogConfig',</li>
+<li>alle &quot;Models&quot; der Applikation werden in der blog/models.py Datei definiert</li>
+<li>Klassennamen immer mit einem Großbuchstaben beginnen</li>
+<li>Methoden beginnen mit Kleinbuchstaben und anstatt Leerzeichen Unterstrich verwenden</li>
+</ul>
+<h3 id="tabellen-für-models-in-deiner-datenbank-erstellen">Tabellen für Models in deiner Datenbank erstellen</h3>
+<ul>
+<li>python <a href="http://manage.py">manage.py</a> makemigrations blog  ==&gt; Migrationsdatei vorbereiten</li>
+<li>python <a href="http://manage.py">manage.py</a> migrate blog  ==&gt; auf die Datenbank anwenden</li>
+</ul>
+<h2 id="django-administration">Django-Administration</h2>
+<ul>
+<li>Admin-Seite <a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a></li>
+<li>Super User erstellen: (myvenv) python <a href="http://manage.py">manage.py</a> createsuperuser   z.B. wkrass  <a href="mailto:wkrass@live.de">wkrass@live.de</a></li>
+<li>Django-Admin-Dashboard in der Django-Dokumentation: <a href="https://docs.djangoproject.com/en/2.2/ref/contrib/admin/">https://docs.djangoproject.com/en/2.2/ref/contrib/admin/</a></li>
+</ul>
+<h2 id="veröffentlichen">Veröffentlichen</h2>
+<ul>
+<li>Deployen bedeutet, dass du deine Anwendung im Internet veröffentlichst.</li>
+<li>z.B. auf <a href="https://www.pythonanywhere.com/">PythonAnywhere</a></li>
+</ul>
+
+    </body>
+    </html>

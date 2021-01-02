@@ -39,7 +39,30 @@
 </ul>
 </li>
 <li><a href="#django-administration">Django-Administration</a></li>
-<li><a href="#ver%C3%B6ffentlichen">Veröffentlichen</a></li>
+<li><a href="#ver%C3%B6ffentlichen">Veröffentlichen</a>
+<ul>
+<li><a href="#git">Git</a></li>
+<li><a href="#git-repository">Git-Repository</a>
+<ul>
+<li><a href="#initialisierung">Initialisierung</a></li>
+<li><a href="#dateien-ignorieren---gitignore">Dateien ignorieren - .gitignore</a></li>
+<li><a href="#was-wurde-ge%C3%A4ndert">Was wurde geändert?</a></li>
+<li><a href="#%C3%A4nderungen-speichern">Änderungen speichern</a></li>
+</ul>
+</li>
+<li><a href="#code-auf-github-ver%C3%B6ffentlichen">Code auf GitHub veröffentlichen</a>
+<ul>
+<li><a href="#repository-erstellen">Repository erstellen</a></li>
+<li><a href="#git-repository-auf-meinem-computer-mit-dem-auf-github-verbinden">Git-Repository auf meinem Computer mit dem auf GitHub verbinden</a></li>
+</ul>
+</li>
+<li><a href="#blog-auf-pythonanywhere-einrichten">Blog auf PythonAnywhere einrichten</a>
+<ul>
+<li><a href="#f%C3%BCr-ein-pythonanywhere-konto-registrieren">Für ein PythonAnywhere Konto registrieren</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -99,6 +122,42 @@
 <li>Deployen bedeutet, dass du deine Anwendung im Internet veröffentlichst.</li>
 <li>z.B. auf <a href="https://www.pythonanywhere.com/">PythonAnywhere</a></li>
 </ul>
+<h3 id="git">Git</h3>
+<ul>
+<li>Download von <a href="https://git-scm.com/">https://git-scm.com/</a></li>
+</ul>
+<h3 id="git-repository">Git-Repository</h3>
+<h4 id="initialisierung">Initialisierung</h4>
+<p>Die Initialisierung des Git-Repositorys muss für jedes Projekt nur einmal gemacht werden</p>
+<ul>
+<li>git init</li>
+<li>git config --global <a href="http://user.name">user.name</a> &quot;wkrass&quot;</li>
+<li>git config --global user.email <a href="mailto:wkrass@live.de">wkrass@live.de</a></li>
+</ul>
+<h4 id="dateien-ignorieren---gitignore">Dateien ignorieren - .gitignore</h4>
+<p>Git wird die Änderungen an all den Dateien und Ordnern in diesem Verzeichnis aufzeichnen.
+Wir wollen aber, dass einige Dateien ignoriert werden. Dazu legen wir eine Datei <strong>.gitignore</strong> im Hauptordner (djangogirls) des Repos an.</p>
+<h4 id="was-wurde-geändert">Was wurde geändert?</h4>
+<p>Es ist hilfreich den Befehl <strong>git status</strong> vor <strong>git add</strong> auszuführen oder immer dann, wenn du dir unsicher bist, was geändert wurde.
+Das schützt vor manchen Überraschungen, wie z. B. das falsche Hinzufügen oder Übertragen von Dateien.</p>
+<h4 id="änderungen-speichern">Änderungen speichern</h4>
+<ul>
+<li>git add --all .</li>
+<li>git commit -m &quot;My Django Girls app, first commit&quot;</li>
+</ul>
+<h3 id="code-auf-github-veröffentlichen">Code auf GitHub veröffentlichen</h3>
+<h4 id="repository-erstellen">Repository erstellen</h4>
+<ul>
+<li>auf <a href="https://www.github.com/">https://www.github.com/</a> ein neues Repository erstellen &quot;my-first-blog&quot;</li>
+<li><a href="https://github.com/wkrass/my-first-blog.git">https://github.com/wkrass/my-first-blog.git</a></li>
+</ul>
+<h4 id="git-repository-auf-meinem-computer-mit-dem-auf-github-verbinden">Git-Repository auf meinem Computer mit dem auf GitHub verbinden</h4>
+<ul>
+<li>git remote add origin <a href="https://github.com/">https://github.com/</a><your-github-username>/my-first-blog.git</li>
+<li>git push -u origin master</li>
+</ul>
+<h3 id="blog-auf-pythonanywhere-einrichten">Blog auf PythonAnywhere einrichten</h3>
+<h4 id="für-ein-pythonanywhere-konto-registrieren">Für ein PythonAnywhere Konto registrieren</h4>
 
     </body>
     </html>

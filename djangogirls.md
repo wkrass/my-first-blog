@@ -25,6 +25,12 @@
   - [Django-URLs](#django-urls)
   - [Django-Views](#django-views)
   - [Django-Template](#django-template)
+  - [Deployment](#deployment)
+  - [Neuen Code auf PythonAnywhere](#neuen-code-auf-pythonanywhere)
+  - [Django-ORM und QuerySets](#django-orm-und-querysets)
+    - [Django-Shell](#django-shell)
+  - [Dynamische Daten in Templates](#dynamische-daten-in-templates)
+  - [Django-Templates](#django-templates)
   
 ## Virtuelle Umgebung
 - Im Projektverzeichnis erstellen: python -m venv myvenv
@@ -154,3 +160,83 @@ Die Datenbank auf PythonAnywhere ist vollständig unabhängig von meiner Datenba
 - wird in HTML beschrieben
 - Templates werden z.B. im Verzeichnis blog/templates/blog gespeichert
 - post_list.html
+- <div></div> definiert einen Abschnitt auf einer Seite
+
+## Deployment
+- commit und push auf GitHub
+- Achtung: im lokalen Projektverzeichnis! z.B. C:\python\djangogirls
+> $ git add --all .  # --all berücksichtigt auch gelöschte Dateien; 
+  der . steht für das aktuelle Verzeichnis  
+> $ git status  
+> $ git commit -m "HTML der Site geändert."  
+> $ git push  
+
+## Neuen Code auf PythonAnywhere
+- Öffne die PythonAnywhere consoles page und gehe zur Bash-Konsole (oder starte eine neue).
+- cd ~/<deine-pythonanywhere-domain>.pythonanywhere.com
+- git pull
+- unter "Files" sieht man die Dateien
+- unter "Web" Reload ausführen
+
+## Django-ORM und QuerySets
+- **ORM** = Object-Relational Mapping
+- Ein **QuerySet** ist eine Liste von Objekten eines bestimmten Models. QuerySets erlauben es dir, Daten aus der Datenbank zu lesen, zu filtern und zu sortieren.
+
+### Django-Shell
+(myvenv) ~/djangogirls$ python manage.py shell  ==> Interaktive Django-Konsole
+  > from blog.models import Post  
+  > Post.objects.all() ==> alle Posts anzeigen  
+  > Post.objects.create(author=me, title='Sample title', text='Test')
+
+User-Objekt ermitteln und "me" zuweisen:  
+- from django.contrib.auth.models import User
+- User.objects.all()
+- me = User.objects.get(username='wkrass')
+
+Filtern
+- Post.objects.filter(author=me) 
+- Post.objects.filter(title__contains='title')  ==> 2 Unterstriche zw. title und contains  
+  __ trennt Feldname und Operationen bzw. Filter
+
+bereits publizierte Posts
+- from django.utils import timezone
+- Post.objects.filter(published_date__lte=timezone.now())
+
+Post mit meiner publish-Methode publizieren
+-  post = Post.objects.get(title="Sample title")  ==> Instanz des Posts holen
+-  post.publish()  ==> mit der in models.py definierten Methode publizieren
+
+Objekte ordnen
+- Post.objects.order_by('created_date')  ==> aufsteigend
+- Post.objects.order_by('-created_date') ==> absteigend
+
+Komplexe Queries durch Methoden-Verkettung
+- Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+
+## Dynamische Daten in Templates
+- Posts im HTML-Template erscheinen lassen mit Views (Verbindung zw. Model und Template)
+- In einer View entscheiden wir, was (welches Model) wir in einem Template anzeigen werden.
+- in blog\views.py hinzufügen
+  ```
+  from django.shortcuts import render  
+  from django.utils import timezone  
+  from .models import Post  
+  
+  def post_list(request):  
+      posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+      return render(request, 'blog/post_list.html', {'posts': posts})
+  ```
+- Variable posts für das QuerySet
+- 'posts': posts  ==> Name 'posts' für die Übergabe an das Template
+
+## Django-Templates
+- Die **Django-Template-Tags** erlauben uns, Python-artige Dinge ins HTML zu bringen, 
+  so dass man einfach und schnell dynamische Websites erstellen kann.
+- Variable in einem Django-Template: z.B. {{ posts }}
+
+Liste mit for-Schleife anzeigen
+```
+{% for post in posts %}
+    {{ post }}
+{% endfor %}
+```

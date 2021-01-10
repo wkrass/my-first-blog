@@ -1,36 +1,4 @@
 # Djangogirls Tutorial für Python und Django
-
-- [Djangogirls Tutorial für Python und Django](#djangogirls-tutorial-für-python-und-django)
-  - [Virtuelle Umgebung](#virtuelle-umgebung)
-  - [Django Installation](#django-installation)
-  - [Das erste Django Projekt - ein Blog](#das-erste-django-projekt---ein-blog)
-  - [Webserver starten](#webserver-starten)
-  - [Django-Models](#django-models)
-    - [Django-Model erstellen](#django-model-erstellen)
-    - [Eine Applikation für den Blog](#eine-applikation-für-den-blog)
-    - [Tabellen für Models in deiner Datenbank erstellen](#tabellen-für-models-in-deiner-datenbank-erstellen)
-  - [Django-Administration](#django-administration)
-  - [Veröffentlichen](#veröffentlichen)
-    - [Git](#git)
-    - [Git-Repository](#git-repository)
-      - [Initialisierung](#initialisierung)
-      - [Dateien ignorieren - .gitignore](#dateien-ignorieren---gitignore)
-      - [Was wurde geändert?](#was-wurde-geändert)
-      - [Änderungen speichern](#änderungen-speichern)
-    - [Code auf GitHub veröffentlichen](#code-auf-github-veröffentlichen)
-      - [Repository erstellen](#repository-erstellen)
-      - [Git-Repository auf meinem Computer mit dem auf GitHub verbinden](#git-repository-auf-meinem-computer-mit-dem-auf-github-verbinden)
-    - [Blog auf PythonAnywhere einrichten](#blog-auf-pythonanywhere-einrichten)
-      - [Code von GitHub herunterladen und PythonAnyhwere dazu bringen, diesen zu erkennen und als Web Applikation anzubieten](#code-von-github-herunterladen-und-pythonanyhwere-dazu-bringen-diesen-zu-erkennen-und-als-web-applikation-anzubieten)
-  - [Django-URLs](#django-urls)
-  - [Django-Views](#django-views)
-  - [Django-Template](#django-template)
-  - [Deployment](#deployment)
-  - [Neuen Code auf PythonAnywhere](#neuen-code-auf-pythonanywhere)
-  - [Django-ORM und QuerySets](#django-orm-und-querysets)
-    - [Django-Shell](#django-shell)
-  - [Dynamische Daten in Templates](#dynamische-daten-in-templates)
-  - [Django-Templates](#django-templates)
   
 ## Virtuelle Umgebung
 - Im Projektverzeichnis erstellen: python -m venv myvenv
@@ -50,7 +18,6 @@
 
 ## Webserver starten
 (myvenv) **python manage.py runserver**
-
 
 ## Django-Models
 - objektorientiertes Programmieren - Objekte und Vorlagen (Klassen)
@@ -77,7 +44,6 @@
 - Admin-Seite http://127.0.0.1:8000/admin/
 - Super User erstellen: (myvenv) python manage.py createsuperuser   z.B. wkrass  wkrass@live.de
 - Django-Admin-Dashboard in der Django-Dokumentation: https://docs.djangoproject.com/en/2.2/ref/contrib/admin/
-
 
 ## Veröffentlichen
 - Deployen bedeutet, dass du deine Anwendung im Internet veröffentlichst.
@@ -116,7 +82,6 @@ Das schützt vor manchen Überraschungen, wie z. B. das falsche Hinzufügen oder
 - git remote add origin https://github.com/<your-github-username>/my-first-blog.git
 - git push -u origin master
 
-
 ### Blog auf PythonAnywhere einrichten
 - für ein PythonAnywhere Konto registrieren  ==> User wkrass mit E-Mail wkrass@live.de
 - erstellen eines PythonAnywhere API-Tokens
@@ -139,11 +104,11 @@ die bei jedem anderen Server-Provider gemacht werden müssen.
   nutzen!
 - [Debugging Tipps](https://tutorial.djangogirls.org/de/deploy/#debugging-tipps)
 
-
 Die Datenbank auf PythonAnywhere ist vollständig unabhängig von meiner Datenbank auf meinem eigenen PC, daher
 - ( ... ) $ python manage.py createsuperuser  ==> wkrass, wkrass@live.de
 
->Für Änderungen auf dem **lokalen Setup** arbeiten. So wird in der Web-Entwicklung gearbeitet - Änderungen lokal machen und diese dann auf GitHub veröffentlichen und dann die Änderungen auf den produktiven Webserver ziehen. So kannst du Sachen ausprobieren, ohne deine produktive Website kaputt zu machen.
+>Für Änderungen auf dem **lokalen Setup** arbeiten. So wird in der Web-Entwicklung gearbeitet - Änderungen lokal machen und diese dann auf GitHub veröffentlichen und dann die Änderungen auf den produktiven Webserver ziehen. 
+>So kannst du Sachen ausprobieren, ohne deine produktive Website kaputt zu machen.
 
 ## Django-URLs
 - mysite/urls.py Datei
@@ -163,6 +128,7 @@ Die Datenbank auf PythonAnywhere ist vollständig unabhängig von meiner Datenba
 - <div></div> definiert einen Abschnitt auf einer Seite
 
 ## Deployment
+### Commit und Push lokal
 - commit und push auf GitHub
 - Achtung: im lokalen Projektverzeichnis! z.B. C:\python\djangogirls
 > $ git add --all .  # --all berücksichtigt auch gelöschte Dateien; 
@@ -171,7 +137,7 @@ Die Datenbank auf PythonAnywhere ist vollständig unabhängig von meiner Datenba
 > $ git commit -m "HTML der Site geändert."  
 > $ git push  
 
-## Neuen Code auf PythonAnywhere
+### Neuen Code auf PythonAnywhere ziehen
 - Öffne die PythonAnywhere consoles page und gehe zur Bash-Konsole (oder starte eine neue).
 - cd ~/<deine-pythonanywhere-domain>.pythonanywhere.com
 - git pull
@@ -240,3 +206,45 @@ Liste mit for-Schleife anzeigen
     {{ post }}
 {% endfor %}
 ```
+
+### Alles auf PythonAnywhere ...
+
+Zuerst Code auf GitHub schieben
+```
+$ git status
+[...]
+$ git add --all .
+$ git status
+[...]
+$ git commit -m "Modified templates to display posts from database."
+[...]
+$ git push
+```
+
+dann Code von GitHub auf PythonAnywhere ziehen (in Bash-Console auf PythonAnywhere)
+```
+$ cd <deine-pythonanywhere-domain>.pythonanywhere.com
+$ git pull
+[...]
+```
+- unter "Web" neu laden
+
+## CSS
+Cascading Style Sheets (CSS) ist eine Sprache, die das Aussehen und die Formatierung einer Website beschreibt. Es handelt sich wie bei HTML um eine Auszeichnungssprache (Markup Language).
+
+### Bootstrap
+**Bootstrap** ist eines der bekanntesten HTML- und CSS-Frameworks für die Entwicklung von schönen Webseiten: https://getbootstrap.com/
+
+Im <head>-Abschnitt der html-Datei einfügen
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+### Statische Dateien in Django
+Statische Dateien sind alle deine CSS- und Bilddateien. Ihr Inhalt hängt nicht vom Requestkontext ab, sondern gilt für alle Benutzer gleichermaßen.
+==> Ordner static in der App erstellen  
+Django findet automatisch alle Ordner mit dem Namen "static" in all unseren App-Ordnern. So ist es in der Lage, ihre Inhalte als statische Dateien zu nutzen.
+
+### CSS-Datei
+- Ordner CSS im Verzeichnis static erstellen und darin die Datei blog.css
+- [CSS-Selektoren Anleitung](http://www.w3schools.com/cssref/css_selectors.asp)
+- kostenlose Online-Kurse "Basic HTML & HTML5" und "Basic CSS" auf [freeCodeCamp](https://learn.freecodecamp.org/).
